@@ -1,0 +1,19 @@
+# LeetCode 0257 - Binary Tree Paths
+
+class Solution(object):
+    def binaryTreePaths(self, root):
+        result = []
+        def dfs(node, curr_path):
+            if not node:
+                return 
+            if curr_path:
+                curr_path += "->" + str(node.val)
+            else:
+                curr_path = str(node.val)
+            if not node.left and not node.right:
+                result.append(curr_path)
+                return
+            dfs(node.left, curr_path)
+            dfs(node.right, curr_path)
+        dfs(root, "")
+        return result
